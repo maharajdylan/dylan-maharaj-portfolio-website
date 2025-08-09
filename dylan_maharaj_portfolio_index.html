@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dylan Maharaj — Portfolio</title>
+  <meta name="description" content="Dylan Maharaj - Computer Science & Application Development | Frontend & Backend Developer" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0b0b; /* deep black */
+      --card:#1f1f1f; /* dark gray card */
+      --muted:#bfbfbf; /* light gray text */
+      --accent:#9da3ff; /* subtle accent (used sparingly) */
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* Layout */
+    .wrap{max-width:var(--max-width);margin:40px auto;padding:24px}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--card),#2a2a2a);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted);box-shadow:0 6px 18px rgba(0,0,0,0.6);
+    }
+    .brand h1{font-size:18px;margin:0;color:#fff}
+    .brand p{margin:0;font-size:13px;color:var(--muted)}
+
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:var(--accent)}
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:34px;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;
+      backdrop-filter: blur(6px);
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+      position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.03)
+    }
+    .hero .intro h2{margin:0;font-size:28px;color:#fff}
+    .hero .intro p{color:var(--muted);margin-top:10px}
+    .cta{margin-top:18px}
+    .btn{display:inline-block;padding:10px 18px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);text-decoration:none;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#8ee7d1);color:#071125;border:none}
+
+    /* cards grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 24px rgba(2,2,2,0.6);transition:transform .35s ease,box-shadow .35s ease}
+    .card:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(0,0,0,0.7)}
+    .card h3{margin:0 0 8px 0;color:#fff}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* skills */
+    .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .skill{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);display:flex;align-items:center;gap:12px}
+    .skill .dot{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted)}
+
+    /* projects */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .project{display:flex;flex-direction:column;gap:10px}
+    .project .meta{display:flex;justify-content:space-between;align-items:center}
+
+    /* Timeline */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline-item{display:flex;gap:12px;align-items:flex-start}
+    .timeline-item .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:6px}
+
+    /* contact */
+    .contact .row{display:flex;gap:12px;align-items:center}
+
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .projects{grid-template-columns:1fr}
+      .skills{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+      nav{display:none}
+      .brand p{display:none}
+    }
+
+    /* subtle entrance animations */
+    .fade{opacity:0;transform:translateY(8px);animation:fadeIn .7s forwards}
+    .delay-1{animation-delay:.12s}
+    .delay-2{animation-delay:.22s}
+    .delay-3{animation-delay:.32s}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+
+    /* animated glass card hover */
+    .glass:hover{box-shadow:0 30px 80px rgba(0,0,0,0.7)}
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:13px}
+
+    /* contact form simple */
+    input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted)}
+    textarea{min-height:120px}
+
+    /* small social */
+    .socials{display:flex;gap:10px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.02);text-decoration:none;color:var(--muted)}
+
+    /* canvas background fills behind content */
+    #bgCanvas{position:fixed;left:0;top:0;width:100%;height:100%;z-index:0}
+    .wrap{position:relative;z-index:1}
+  </style>
+</head>
+<body>
+  <!-- Animated background canvas -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">DM</div>
+        <div>
+          <h1>Dylan Maharaj</h1>
+          <p class="muted">Software Developer • C# · Kotlin · Web</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero glass">
+      <div class="intro fade delay-1">
+        <h2>Hi — I’m Dylan. I build web and mobile apps.</h2>
+        <p>Computer Science & Application Development graduate with practical experience in C#, .NET, Kotlin, and Firebase. I enjoy building clean, modern user experiences and robust backend services.</p>
+
+        <div class="cta">
+          <a class="btn" href="#projects">View projects</a>
+          <a class="btn primary" href="#contact">Contact me</a>
+        </div>
+
+        <div style="margin-top:18px" class="muted small">
+          <span class="tag">Varsity College — Degree (Dec 2024)</span>
+        </div>
+      </div>
+
+      <aside class="fade delay-2" style="align-self:start">
+        <div class="card" style="width:100%">
+          <h3>Contact</h3>
+          <p class="small">Johannesburg, South Africa</p>
+          <p class="small">Phone: <strong style="color:#fff">079 137 3021</strong></p>
+          <p class="small">Email: <a href="mailto:maharajdylan078@gmail.com" style="color:var(--muted)">maharajdylan078@gmail.com</a></p>
+          <div style="margin-top:12px" class="socials">
+            <a href="https://github.com/ST10084475" target="_blank" rel="noreferrer">GH</a>
+            <a href="https://www.linkedin.com/in/dylan-maharaj-925781224/" target="_blank" rel="noreferrer">LI</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h3>Quick Info</h3>
+          <p class="small">DOB: 06 April 2003</p>
+          <p class="small">Driver's Licence: Code 8</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- main grid -->
+    <div class="grid" style="margin-top:22px">
+      <div class="card fade delay-1" id="about">
+        <h3>About</h3>
+        <p class="small">A young, hardworking, self-motivated and organized individual with strong interpersonal and communication skills. Degree in Computer Science & Application Development. Experienced with C#, .NET, Kotlin, Android Studio, Firebase and Azure. Comfortable working both front-end and back-end and committed to continuous learning.</p>
+        <div style="margin-top:12px">
+          <span class="tag">Teamwork</span>
+          <span class="tag">OOP</span>
+          <span class="tag">Agile</span>
+        </div>
+      </div>
+
+      <div class="card fade delay-2" id="skills">
+        <h3>Skills</h3>
+        <div class="skills" style="margin-top:12px">
+          <div class="skill"><div class="dot">C#</div><div class="small">.NET Framework, backend services, APIs</div></div>
+          <div class="skill"><div class="dot">KOT</div><div class="small">Kotlin, Android Studio, mobile apps</div></div>
+          <div class="skill"><div class="dot">SQL</div><div class="small">Database analysis & design</div></div>
+          <div class="skill"><div class="dot">HTML</div><div class="small">Semantic markup & accessibility</div></div>
+          <div class="skill"><div class="dot">CSS</div><div class="small">Responsive, modern UI, animations</div></div>
+          <div class="skill"><div class="dot">GIT</div><div class="small">GitHub & version control</div></div>
+        </div>
+      </div>
+
+      <div class="card fade delay-3">
+        <h3>Education</h3>
+        <div style="margin-top:10px" class="timeline">
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div>
+              <strong style="color:#fff">Bachelor — Computer Science & Application Development</strong>
+              <div class="small">Varsity College, Westville — Degree completed Dec 2024</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div>
+              <strong style="color:#fff">Higher Certificate — IT & Support Services</strong>
+              <div class="small">Varsity College — Dec 2021</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top:20px">
+      <h2 style="color:#fff">Projects</h2>
+      <div class="projects" id="projects">
+        <div class="project card fade delay-1">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3 style="margin:0">NGO Website & Mobile App</h3>
+            <span class="tag">Team project</span>
+          </div>
+          <p class="small">Contributed to a team of 4 creating a website and mobile application for a local non-profit. Worked across front-end and back-end tasks — building UIs and integrating with backend services.</p>
+          <div class="meta">
+            <div class="small">Kotlin • Android • Firebase • Node/Express</div>
+            <div class="small">Role: Developer</div>
+          </div>
+          <div style="margin-top:8px"><a class="btn" href="#contact">Get in touch for details</a></div>
+        </div>
+
+        <div class="project card fade delay-2">
+          <h3 style="margin:0">Time Tracking App (Max Time)</h3>
+          <p class="small">Personal project: a time tracking app built with Android Studio and Kotlin. Implemented stopwatch, entries, and local storage with plans for Firebase sync.</p>
+          <div class="meta"><div class="small">Kotlin • Android Studio</div><div class="small">Status: In progress</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:20px" id="contact">
+      <div class="grid">
+        <div class="card fade delay-1 contact">
+          <h3>Contact</h3>
+          <p class="small">I’m available for internships, graduate programmes, and junior developer roles. You can reach me via email or LinkedIn.</p>
+          <div style="margin-top:12px">
+            <p class="small"><strong>Email:</strong> <a href="mailto:maharajdylan078@gmail.com">maharajdylan078@gmail.com</a></p>
+            <p class="small"><strong>Phone:</strong> 079 137 3021</p>
+          </div>
+          <form style="margin-top:12px" onsubmit="return handleContact(event)">
+            <input name="name" placeholder="Your name" required />
+            <input name="email" placeholder="Your email" required style="margin-top:8px" />
+            <textarea name="message" placeholder="Message" style="margin-top:8px" required></textarea>
+            <div style="margin-top:8px"><button class="btn primary" type="submit">Send</button></div>
+          </form>
+        </div>
+
+        <div class="card fade delay-2">
+          <h3>Quick CV</h3>
+          <p class="small">Availability: Immediately. Looking for graduate/junior roles. Experience in building apps using C#, Kotlin, Firebase and Azure. Comfortable with both front-end and back-end development.</p>
+          <div style="margin-top:16px">
+            <a class="btn" href="/">Download CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <strong style="color:#fff">Dylan Maharaj</strong> • Built with care • Designed for clarity</div>
+    </footer>
+  </div>
+
+  <script>
+    // --- Simple contact handler (client-side only) ---
+    function handleContact(e){
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if(!name||!email||!message) return alert('Please complete the form');
+      alert('Thanks '+name+" — message saved locally. Please email directly to: maharajdylan078@gmail.com for real contact.");
+      form.reset();
+      return false;
+    }
+
+    // --- Animated background: particle network ---
+    (function(){
+      const canvas = document.getElementById('bgCanvas');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = innerWidth;
+      let h = canvas.height = innerHeight;
+      const opts = {particleCount: 70, maxVel:0.6, connectDist:120, color:'#9da3ff'};
+      const particles = [];
+
+      function rand(min,max){return Math.random()*(max-min)+min}
+      function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+      addEventListener('resize',resize);
+
+      function Particle(){
+        this.x = Math.random()*w;
+        this.y = Math.random()*h;
+        this.vx = rand(-opts.maxVel,opts.maxVel);
+        this.vy = rand(-opts.maxVel,opts.maxVel);
+        this.r = rand(1,2.6);
+      }
+      Particle.prototype.step = function(){
+        this.x += this.vx; this.y += this.vy;
+        if(this.x<0||this.x>w) this.vx *= -1;
+        if(this.y<0||this.y>h) this.vy *= -1;
+      };
+
+      for(let i=0;i<opts.particleCount;i++) particles.push(new Particle());
+
+      function loop(){
+        ctx.clearRect(0,0,w,h);
+        // subtle gradient overlay
+        const g = ctx.createLinearGradient(0,0,w,h);
+        g.addColorStop(0,'rgba(255,255,255,0.01)');
+        g.addColorStop(1,'rgba(255,255,255,0.00)');
+        ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+
+        // draw particles
+        for(let p of particles){
+          p.step();
+          ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(157,163,255,0.14)';ctx.fill();
+        }
+
+        // draw connecting lines
+        for(let i=0;i<particles.length;i++){
+          for(let j=i+1;j<particles.length;j++){
+            const a=particles[i], b=particles[j];
+            const dx=a.x-b.x, dy=a.y-b.y; const d = Math.sqrt(dx*dx+dy*dy);
+            if(d<opts.connectDist){
+              const alpha = 1 - d/opts.connectDist;
+              ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+              ctx.strokeStyle = 'rgba(157,163,255,'+ (0.06*alpha) +')';ctx.lineWidth=1;ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(loop);
+      }
+      loop();
+
+      // subtle parallax with mouse
+      let mx = -9999, my = -9999;
+      addEventListener('mousemove', (e)=>{mx=e.clientX;my=e.clientY});
+      setInterval(()=>{
+        if(mx===-9999) return;
+        for(let p of particles){
+          p.x += (mx - w/2)/50000;
+          p.y += (my - h/2)/50000;
+        }
+      },30);
+    })();
+
+    // small fade-in trigger when elements enter viewport
+    (function(){
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); })
+      },{threshold:0.08});
+      document.querySelectorAll('.fade').forEach(el=>{obs.observe(el)});
+    })();
+  </script>
+</body>
+</html>
